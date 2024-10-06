@@ -21,7 +21,7 @@ public class TestEssAPI : BasePlugin
 
     public static IEssAPI? _api;
 
-    public static PluginCapability<IEssAPI> _pluginCapability { get; } = new("ess:core");
+    public static PluginCapability<IEssAPI> Capability { get; } = new("ess:core");
 
     public override void Load(bool hotReload)
     {
@@ -36,7 +36,7 @@ public class TestEssAPI : BasePlugin
 
     public override void OnAllPluginsLoaded(bool hotReload)
     {
-        _api = _pluginCapability.Get();
+        _api = Capability.Get();
         if (_api == null) return;
 
         //register listeners

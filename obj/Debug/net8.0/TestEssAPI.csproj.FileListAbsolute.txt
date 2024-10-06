@@ -12,3 +12,4 @@ D:\bg-koka-hub-plugins\bg-koka-test-api\TestEssAPI\obj\Debug\net8.0\TestEssAPI.d
 D:\bg-koka-hub-plugins\bg-koka-test-api\TestEssAPI\obj\Debug\net8.0\refint\TestEssAPI.dll
 D:\bg-koka-hub-plugins\bg-koka-test-api\TestEssAPI\obj\Debug\net8.0\TestEssAPI.pdb
 D:\bg-koka-hub-plugins\bg-koka-test-api\TestEssAPI\obj\Debug\net8.0\ref\TestEssAPI.dll
+D:\bg-koka-hub-plugins\bg-koka-test-api\TestEssAPI\obj\Debug\net8.0\TestEssAPI.sourcelink.json
