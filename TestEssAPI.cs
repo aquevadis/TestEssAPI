@@ -65,7 +65,7 @@ public class TestEssAPI : BasePlugin
 
     [ConsoleCommand("css_testapi", "")]
     [CommandHelper(minArgs: 0, whoCanExecute: CommandUsage.CLIENT_AND_SERVER)]
-    public void Unhide(CCSPlayerController? player, CommandInfo command)
+    public void TestAPI(CCSPlayerController? player, CommandInfo command)
     {
 
         if (player is null || player.IsValid is not true) return;
