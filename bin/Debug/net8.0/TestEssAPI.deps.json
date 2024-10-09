@@ -9,7 +9,7 @@
       "TestEssAPI/1.0.0": {
         "dependencies": {
           "CounterStrikeSharp.API": "1.0.271",
-          "EssAPI": "1.0.0.0"
+          "EntitySubSystemAPI": "1.0.0.0"
         },
         "runtime": {
           "TestEssAPI.dll": {}
@@ -532,9 +532,9 @@
           "System.Text.Encodings.Web": "8.0.0"
         }
       },
-      "EssAPI/1.0.0.0": {
+      "EntitySubSystemAPI/1.0.0.0": {
         "runtime": {
-          "EssAPI.dll": {
+          "EntitySubSystemAPI.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -877,7 +877,7 @@
       "path": "system.text.json/8.0.0",
       "hashPath": "system.text.json.8.0.0.nupkg.sha512"
     },
-    "EssAPI/1.0.0.0": {
+    "EntitySubSystemAPI/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

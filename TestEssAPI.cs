@@ -8,8 +8,8 @@ using CounterStrikeSharp.API.Modules.Memory;
 using CounterStrikeSharp.API.Modules.Utils;
 using System.Drawing;
 using Vector = CounterStrikeSharp.API.Modules.Utils.Vector;
-using EssAPI;
-using static EssAPI.IEssAPI;
+using EntitySubSystemAPI;
+using static EntitySubSystemAPI.IEntitySubSystemAPI;
 
 namespace TestEssAPI;
 
@@ -17,32 +17,32 @@ public class TestEssAPI : BasePlugin
 {
     public override string ModuleName => "TestEssAPI";
     public override string ModuleAuthor => "AquaVadis";
-    public override string ModuleVersion => "0.0.1";
+    public override string ModuleVersion => "1.0.4s";
 
-    public static IEssAPI? _api;
-
-    public static PluginCapability<IEssAPI> Capability { get; } = new("ess:core");
-
+    public static PluginCapability<IEntitySubSystemAPI> Capability { get; } = new("ess:base");
+    
     public override void Load(bool hotReload)
     {
-        // _api = _pluginCapability.Get();
-        // if (_api == null) return;
-
+        
         //register listeners
         RegisterListener<Listeners.OnEntityCreated>(OnEntityCreatedBase);
 
-       //public static PluginCapability<IZombiePlagueAPI> BalanceServiceCapability { get; } = new("myplugin:balance_service");
     }
 
     public override void OnAllPluginsLoaded(bool hotReload)
     {
-        _api = Capability.Get();
-        if (_api == null) return;
+        var entitySubSystemAPI = Capability.Get();
+        if (entitySubSystemAPI == null) return;
 
-        //register listeners
-        RegisterListener<Listeners.OnEntityCreated>(OnEntityCreatedBase);
+        entitySubSystemAPI.OnPlayerTouchEntity += (CEntityInstance touchedEntity, CCSPlayerPawnBase touchingPlayerPawnBase) => {
 
-       //public static PluginCapability<IZombiePlagueAPI> BalanceServiceCapability { get; } = new("myplugin:balance_service");
+            //debug log:
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"[OnEntityTouchByPlayer][Consumer Plugin] {touchedEntity.DesignerName} touched by {touchingPlayerPawnBase.DesignerName}");
+            Console.ResetColor();
+
+        };
+        
     }
 
     public override void Unload(bool hotReload)
@@ -54,9 +54,28 @@ public class TestEssAPI : BasePlugin
         base.Unload(hotReload);
     }
 
-    public static void OnEntityCreatedBase(CEntityInstance entity)
+    public void OnEntityCreatedBase(CEntityInstance entity)
 	{
-        _api?.StartTouch(entity);
+        var entitySubSystemAPI = Capability.Get();
+        if (entitySubSystemAPI == null) return;
+
+        entitySubSystemAPI.StartTouch(entity);
+
     }
+
+    [ConsoleCommand("css_testapi", "")]
+    [CommandHelper(minArgs: 0, whoCanExecute: CommandUsage.CLIENT_AND_SERVER)]
+    public void Unhide(CCSPlayerController? player, CommandInfo command)
+    {
+
+        if (player is null || player.IsValid is not true) return;
+
+        var entitySubSystemAPI = Capability.Get();
+        if (entitySubSystemAPI == null) return;
+
+        //
+
+    }
+
 
 }

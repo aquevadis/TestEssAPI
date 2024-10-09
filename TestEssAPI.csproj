@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EssAPI">
-      <HintPath>EssAPI.dll</HintPath>
+    <Reference Include="EntitySubSystemAPI">
+      <HintPath>EntitySubSystemAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
 
