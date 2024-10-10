@@ -21,6 +21,8 @@ public class TestEssAPI : BasePlugin
 
     public static PluginCapability<IEntitySubSystemAPI> Capability { get; } = new("ess:base");
     
+    public int trackedEntities = 0;
+
     public override void Load(bool hotReload)
     {
         
@@ -38,7 +40,11 @@ public class TestEssAPI : BasePlugin
 
             //debug log:
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"[OnEntityTouchByPlayer][Consumer Plugin] {touchedEntity.DesignerName} touched by {touchingPlayerPawnBase.DesignerName}");
+            Console.WriteLine($"[OnEntityTouchByPlayer][Consumer Plugin] {touchedEntity.DesignerName} touched by {touchingPlayerPawnBase.OriginalController.Value?.PlayerName}");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"[OnEntityTouchByPlayer][Consumer Plugin] Tracked Entities: {trackedEntities}");
             Console.ResetColor();
 
         };
@@ -59,7 +65,11 @@ public class TestEssAPI : BasePlugin
         var entitySubSystemAPI = Capability.Get();
         if (entitySubSystemAPI == null) return;
 
-        entitySubSystemAPI.StartTouch(entity);
+        if (entity.DesignerName.Contains("weapon")) {
+            
+            entitySubSystemAPI.StartTouch(entity);
+            trackedEntities++;
+        }
 
     }
 
@@ -74,6 +84,27 @@ public class TestEssAPI : BasePlugin
         if (entitySubSystemAPI == null) return;
 
         //
+
+    }
+
+    [ConsoleCommand("css_testapi2", "")]
+    [CommandHelper(minArgs: 0, whoCanExecute: CommandUsage.CLIENT_AND_SERVER)]
+    public void TestAPI2(CCSPlayerController? player, CommandInfo command)
+    {
+
+        if (player is null || player.IsValid is not true) return;
+
+        var entitySubSystemAPI = Capability.Get();
+        if (entitySubSystemAPI == null) return;
+
+        foreach (var listPlayer in Utilities.GetPlayers().Where(p => p is not null && p.PawnIsAlive is true))
+        {
+            listPlayer.GiveNamedItem("weapon_ak47");
+            listPlayer.GiveNamedItem("weapon_deagle");
+            listPlayer.GiveNamedItem("weapon_hegrenade");
+            listPlayer.GiveNamedItem("weapon_smokegrenade");
+            listPlayer.GiveNamedItem("weapon_molotov");
+        }
 
     }
 

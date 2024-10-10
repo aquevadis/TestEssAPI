@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestEssAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d3e2d19d483fdb15bcf5721b6d18f4f192491de")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81b7624589af2c491827e4203e742ab5872571a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestEssAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestEssAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
