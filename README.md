@@ -1,4 +1,2 @@
-### CS2 Sky Color Changer [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp)
-
-This plugin changes the sky's color server wide
+### Test API consumer plugin for [EntitySubSystem](https://github.com/aquevadis/bgkoka-cs2-entity-touching-system)
 
